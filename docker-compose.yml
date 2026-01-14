@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  etl-job:
+    build: .
+    container_name: desafio_etl_python
+    volumes:
+      # Mapeia a pasta local para salvar o analytics.db e excels gerados fora do container
+      - .:/app
+      # Mapeia a pasta de dados original (que está um nível acima)
+      - ../Exercícios:/Exercícios
+    environment:
+      # Variável para o script saber que está no Docker (opcional, só se precisasse ajustar caminhos)
+      - DOCKER_MODE=true
